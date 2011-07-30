@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #C9D2D2;
+}
+@font-face {
+	font-family: ForqueWeb;
+	src: url('forque.ttf');
+}
+#header {
+	width: 300px;
+	font-family: ForqueWeb;
+	font-size: 84px;
+	color: #046DB3;
+	margin-left: auto;
+	margin-right: auto;
+}
+	#list_container {
+		width: 900px;	
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#top_container {
+		top: 20px;
+		width: 900px;
+		height: 660px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#bottom_container {
+		width: 820px;
+		height: 220px;
+		background-color: #046DB3;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 15px;
+		padding: 40px;
+	}
+	#other_video_container {
+		width: 320px;
+		height: 240px;
+		background-color: #C9D2D2;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#my_video_container {
+		width: 320px;
+		height: 240px;
+		background-color: #C9D2D2;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+	}
+	#resume_container {
+		width: 370px;
+		height: 520px;
+		background-color: #046DB3;
+		position: relative;
+		float:right;
+		right: 0px;
+		border-radius: 15px;
+		padding: 40px;
+	}
+	#top_left_container {
+		padding: 40px;
+		width: 320px;
+		height: 520px;
+		float:left;
+		left: 0px;
+		border-radius: 15px;
+		background-color: #046DB3;
+	}
+	#top_left_container_label {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px; 
+	}
+	#resume_info {
+		width: 370px;
+		height:520px;
+		background-color: #C9D2D2;
+		overflow: auto;
+	}
+	#resume_label {
+		top: 0px;
+		left: 0px;
+		width: 300px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+	}
+	#bottom_container_label {
+		width: 300px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	#instant_chat_container {
+		width: 820px;
+		height: 220px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#instant_chat_public {
+		position: relative;
+		float: left;
+		width: 820px;
+		height: 150px;
+		background-color: #C9D2D2;
+		overflow: auto;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+	}
+	#instant_chat_entry {
+		position: relative;
+		float: left;
+		width: 480px;
+		height: 50px;
+		background-color: #C9D2D2;
+		border: 0px;
+		margin-top: 15px;
+		overflow: hidden;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+		
+	}
+	#instant_chat_button {
+		position: relative;
+		float: right;
+		width: 300px;
+		height: 50px;
+		margin-top: 15px;
+		background-color: #FFFFFF;
+		border-radius: 10px;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 50px;
+		cursor: pointer;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+
+	}
+	#instant_chat_button:hover {
+		background-color: #0087F8;
+	}
+	#next_person_button {
+		position: absolute;
+		top: 240px;
+		left: 50px;
+		border-radius: 10px;
+		background-color: white;
+		width: 120px;
+		height: 30px;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 30px;
+		cursor: pointer;
+		z-index:99999999;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+
+	}
+	#next_person_button:hover {
+		background-color: #0087F8;
+	}
+</style>
+<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	});
+</script>
+</head>
+<body>
+	<div id="header">careertok</div>
+	<div id="list_container">
+		<div id="top_container">
+			<div id="top_left_container">
+				<div id="top_left_container_label">Video Feed</div>
+				<div id="other_video_container"></div>
+				<div id="my_video_container"></div>
+				<div id="next_person_button">Next Person</div>
+			</div>
+			<div id="resume_container">
+				<div id="resume_label">LinkedIn User Information</div>
+				<div id="resume_info">
+					<div id="profile"></div>
+				</div>
+			</div>
+		</div>
+		<div id="bottom_container">
+			<div id="bottom_container_label">Instant Sharing</div>
+			<div id="instant_chat_container">
+				<div id="instant_chat_public">blah blah blah</div>
+				<input type="text" id="instant_chat_entry" placeholder="enter something to share"/>
+				<div id="instant_chat_button">Press to Share</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
