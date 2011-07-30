@@ -5,14 +5,14 @@
 <title>Insert title here</title>
 <style type="text/css">
 	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		height: 100%;
-	}
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #F6FAA1;
+}
 	#container {
-		width: 900px;
-		background-color: red;
+		width: 900px;	
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
@@ -20,19 +20,20 @@
 	#top_container {
 		top: 50px;
 		width: 900px;
-		height: 600px;
-		background-color: green;
+		height: 690px;
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
 	}
 	#bottom_container {
-		width: 900px;
-		height: 300px;
-		background-color: blue;
+		width: 820px;
+		height: 220px;
+		background-color: #5F8A42;
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
+		border-radius: 15px;
+		padding: 40px;
 	}
 	#other_video_container {
 		width: 320px;
@@ -52,17 +53,67 @@
 		margin-top: 40px;
 	}
 	#resume_container {
-		width: 500px;
-		height: 600px;
-		background-color: purple;
+		width: 370px;
+		height: 520px;
+		background-color: #5F8A42;
 		position: relative;
 		float:right;
 		right: 0px;
+		border-radius: 15px;
+		padding: 40px;
 	}
 	#top_left_container {
-		width: 400px;
-		height: 600px;
+		padding: 40px;
+		width: 320px;
+		height: 520px;
 		float:left;
+		left: 0px;
+		border-radius: 15px;
+		background-color: #5F8A42;
+	}
+	#top_left_container_label {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100px;
+		height: 16px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px; 
+	}
+	#resume_info {
+		width: 370px;
+		height:520px;
+		background-color: red;
+		overflow: auto;
+	}
+	#resume_label {
+		top: 0px;
+		left: 0px;
+		width: 300px;
+		height: 16px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+	}
+	#bottom_container_label {
+		width: 300px;
+		height: 16px;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+		top: 0px;
 		left: 0px;
 	}
 </style>
@@ -77,12 +128,19 @@
 	<div id="container">
 		<div id="top_container">
 			<div id="top_left_container">
+				<div id="top_left_container_label">Video Feed</div>
 				<div id="other_video_container"></div>
 				<div id="my_video_container"></div>
 			</div>
-			<div id="resume_container"></div>
+			<div id="resume_container">
+				<div id="resume_label">LinkedIn User Information</div>
+				<div id="resume_info">
+					blah blah blah
+				</div>
+			</div>
 		</div>
 		<div id="bottom_container">
+			<div id="bottom_container_label">Instant Sharing</div>
 			<div id="instant_chat_container"></div>
 		</div>
 	</div>

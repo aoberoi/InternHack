@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+/*
+ * Overall CSS of InternHack
+ */
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #F6FAA1;
+}
+
+/*
+ * List Section of InternHack
+ */
+#table_list_container {
+	width: 900px;
+	height: 100%;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
+.company_profile {
+	width: 330px;
+	height: 180px;
+	margin: 50px;
+	position: relative;
+	float: left;
+	background-color: #5F8A42;
+	padding: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 15px;
+	cursor: pointer;
+}
+.company_profile_name {
+	width: 330px;
+	height: 25px;
+	font-size: 24px;
+	font-weight: bold;
+	color: white;
+	overflow: hidden;
+}
+.company_profile_description {
+	width: 320px;
+	height: 80px;
+	overflow: hidden;
+	font-size: 14px;
+	float: right;
+}
+.company_profile_positions {
+	width: 225px;
+	height: 50px;
+	overflow: hidden;
+	font-size: 14px;
+	float: left;
+	margin-left: 20px;
+}
+.company_profile_positions_label {
+	width: 320px;
+	height: 15px;
+	color: white;
+	overflow: hidden;
+	font-size: 14px;
+	float: left;
+	margin-left: 10px;
+	font-style: italic;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.company_queue_container {
+	width: 70px;
+	height: 50px;
+	overflow: hidden;
+	font-size: 12px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	text-align: center;
+	border: 2px solid #F28410;
+	border-radius: 10px;
+	background-color: #F28410;
+	line-height: 20px;
+}
+.company_queue_number {
+	width: 70px;
+	position: relative;
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: 2px;
+}
+.company_queue_normal_state {
+	display: block;
+	width: 70px;
+	height: 40px;
+}
+.company_queue_hover_state {
+	display: none;
+	width: 70px;
+	height: 40px;
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	margin-top: 3px;
+}
