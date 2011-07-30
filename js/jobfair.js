@@ -85,12 +85,37 @@ var JOBFAIR = (function (IN) {
     	  loadLayout('table_list', initTableList);
 	      break;
 	    case jf.userTypes.COMPANY_REP:
-	      IN.API.Profile("me").fields('positions:(company:(id,name))').result(function(values) {
-	        console.log(values);
-	      })
+	      IN.API.Profile("me").fields('positions:(company:(id,name))').result(function(results1) {
+	        console.log(results1);
+	        // company name, description, positions offered => tableInfo
+	        // query for company description
+	        IN.API.Raw('/companies/'+results1.values[0].positions.values[0].company.id+':(description)').result(function(results2) {
+	          console.log(results2);
+	          // query for positions
+	          IN.API.Raw('/job-search:(jobs:(id,position:(id,title),job-poster:(id)))?company-name='+encodeURIComponent(results1.values[0].positions.values[0].company.name)+'&job-title=Test').result(function(results3) {
+	            console.log(results3);
+	            // filter by this poster id and company id
+	            var f_positions = [];
+	            //var i=0, len=myArray.length; i<len; ++i
+	            for (var i=0, len=results3.jobs.values.length; i<len; ++i) {
+	              if (results3.jobs.values[i].jobPoster.id == jf.me.linkedInId) {
+	                f_positions.push({ id : results3.jobs.values[i].id, title : results3.jobs.values[i].position.title, companyId : results1.values[0].positions.values[0].company.id });
+	              } else {
+	                console.log('job poster: '+results3.jobs.values[i].jobPoster.id + ' my id: '+ jf.me.linkedInId + ' job: ' + results3.jobs.values[i]);
+	              }
+	            }
+              tableInfo = {
+                            name :        results1.values[0].positions.values[0].company.name,
+                            companyId :   results1.values[0].positions.values[0].company.id,
+                            description : results2.description,
+                            positions :   f_positions
+                          };
+              jf.sockets.tableSetup(tableInfo);
+	          });
+	        });
+	      });
 	      jf.me.state = jf.userStates.CHATTING;
     	  loadLayout('chat', initChat);
-	      // populate jf.me.company
 	      break;
 	  }
 	  jf.sockets.selectType(jf.me.type);
@@ -123,6 +148,10 @@ JOBFAIR.sockets = (function (io) {
         socket.emit('comp rep');
         //console.log('comp rep emitted');
         break;
+    }
+    
+    sckts.tableSetup = function (tableInfo) {
+      socket.emit('table setup', tableInfo);
     }
   }
   
