@@ -44,13 +44,16 @@ var JOBFAIR = (function (IN) {
  	  // populate with real data
  	  
  	  // attach all event handlers
+	  $(".company_profile").live('click', function() {
+	  		loadLayout('chat', initChat);
+	  });
  	}
  	
  	function initChat() {
  	  jf.opentok.init(jf.me.type, jf.me.tableId);
  	  console.log('chat initialization');
 	  if (jf.me.type == jf.userTypes.JOB_SEEKER) {
-	  	//jf.sockets.candidateAtTable(jf.me.linkedInId, )
+	  	jf.sockets.candidateAtTable(jf.me.linkedInId, jf.me.tableId);
 	  }
  	}
  	
@@ -178,7 +181,6 @@ JOBFAIR.sockets = (function (io) {
 		company_profile += '<div class="company_queue_container"><div class="company_queue_normal_state">In Queue<div class="company_queue_number">0</div></div></div></div>';
 		
 		$("#table_list_container").html(company_profile);
-	
 	}
   });
   
