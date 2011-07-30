@@ -8,18 +8,18 @@ var JOBFAIR = (function (IN) {
      
   //jf.moduleProperty = 1;
 	
-	var userStates = {
+	jf.userStates = {
 		LOBBY : 0,
 		CHATTING : 1,
 		IN_QUEUE : 2
 	};
 	
-	var userTypes = {
+	jf.userTypes = {
 		JOB_SEEKER : 0,
 		COMPANY_REP : 1
 	};
 	
-	var me = {
+	jf.me = {
 		type : null,
 		linkedInId : null,
 		state: null
@@ -33,7 +33,7 @@ var JOBFAIR = (function (IN) {
  	  $('.lobby_button').click(function() {
  	    console.log('user choice made');
  	    // TODO: verify its one of known user types
- 	    me.type = $(this).data('userType');
+ 	    jf.me.type = $(this).data('user-type');
  	    // TODO: use dispatched events and event listeners
  	    jf.onUserSelected();
  	  })
@@ -65,15 +65,57 @@ var JOBFAIR = (function (IN) {
   };
 
 	jf.onLinkedInAuth = function() {
+	  IN.API.Profile("me").result(function(profiles) {
+	    jf.sockets.login(profiles.values[0]);
+	    jf.me.linkedInId = profiles.values[0].id;
+	  })
 		loadLayout('user_choice', initUserChoice);
 	};
 	
 	jf.onUserSelected = function() {
+	  jf.sockets.selectType(jf.me.type);
+	  jf.me.state = jf.userStates.LOBBY;
 	  loadLayout('table_list', initTableList);
 	}
      
   return jf; 
 }(IN));
+
+JOBFAIR.sockets = (function (IN, io) {
+  var sckts = {};
+  
+  var socket = io.connect('http://internhack.opentok.com:8000');
+  
+  sckts.login = function(member) {
+    socket.emit('login', {
+      id : member.id,
+      firstName : member.firstName,
+      lastName : member.lastName,
+      headline : member.headline,
+      pictureUrl : member.pictureUrl
+    });
+  };
+  
+  sckts.selectType = function(userType) {
+    console.log('selecting type: '+userType);
+    switch(userType) {
+      case JOBFAIR.userTypes.JOB_SEEKER :
+        socket.emit('job seeker');
+        console.log('job seeker emitted');
+        break;
+      case JOBFAIR.userTypes.COMPANY_REP :
+        socket.emit('comp rep');
+        console.log('comp rep emitted');
+        break;
+    }
+  }
+  
+  socket.on('new table', function(data) {
+    console.log(data);
+  });
+  
+  return sckts;
+}(IN, io));
 
 // var JOBFAIR.opentok = (function (IN, TB) { 
 //   var ot = {};
