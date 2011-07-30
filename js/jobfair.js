@@ -50,7 +50,7 @@ var JOBFAIR = (function (IN) {
  	}
  	
  	function initChat() {
- 	  jf.opentok.init(jf.me.type, jf.me.tableId);
+ 	  //jf.opentok.init(jf.me.type, jf.me.tableId);
  	  console.log('chat initialization');
 	  if (jf.me.type == jf.userTypes.JOB_SEEKER) {
 	  	jf.sockets.candidateAtTable(jf.me.linkedInId, jf.me.tableId);
@@ -126,6 +126,14 @@ var JOBFAIR = (function (IN) {
 	  }
 	  jf.sockets.selectType(jf.me.type);
 	}
+	
+	jf.presentProfile = function(candidateId) {
+	  IN.API.Profile(candidateId)
+       .result(function(result) { 
+          $("#profile").html('<script type="IN/FullMemberProfile" data-id="' + result.values[0].id + '"><script>');
+          IN.parse(document.getElementById("profile"));
+       });
+	}
      
   return jf; 
 }(IN));
@@ -158,12 +166,15 @@ JOBFAIR.sockets = (function (io) {
     
   sckts.tableSetup = function (tableInfo) {
       socket.emit('table setup', tableInfo);
-    }
   }
   
-  sckts.candidateAtTable = function() {
-    
+  sckts.candidateAtTable = function(id, tableId) {
+    socket.emit('candidate arrived', {candidateId: id, table: tableId});
   }
+  
+  socket.on('candidate info' function(data) {
+    JOBFAIR.presentProfile(data.id);
+  })
   
   socket.on('new table', function(data) {
     console.log(data);
