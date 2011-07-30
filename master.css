@@ -1,105 +1,368 @@
 @CHARSET "UTF-8";
 /*
- * Overall CSS of InternHack
+ * Overall CSS
  */
+@font-face {
+	font-family: ForqueWeb;
+	src: url('forque.ttf');
+}
 body {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #F6FAA1;
+	background-color: #C9D2D2;
 }
-
-/*
- * List Section of InternHack
- */
-#table_list_container {
-	width: 900px;
-	height: 100%;
-	position: relative;
+#header {
+	width: 300px;
+	font-family: ForqueWeb;
+	font-size: 84px;
+	color: #046DB3;
 	margin-left: auto;
 	margin-right: auto;
 }
-.company_profile {
-	width: 330px;
-	height: 180px;
-	margin: 50px;
-	position: relative;
-	float: left;
-	background-color: #5F8A42;
-	padding: 10px;
-	font-family: Arial, Helvetica, sans-serif;
-	border-radius: 15px;
-	cursor: pointer;
+
+/*
+ * User Type
+ */
+#user_choice_container {
+		width: 900px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.lobby_button {
+		width: 480px;
+		height: 220px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: #046DB3;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		color: white;
+		font-size: 48px;
+		padding-top: 100px;
+		border-radius: 25px;
+		-moz-border-radius: 25px;
+		cursor: pointer;
+	}
+	#seeker_button {
+		top: 50px;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+
+	}
+	#seeker_button:hover {
+		background-color: #0087F8;
+	}
+	#rep_button {
+		top: 100px;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+	}
+	#rep_button:hover {
+		background-color: #0087F8;
+	}
+	
+/*
+ * List - Lobby
+ */
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #C9D2D2;
+	}
+	@font-face {
+	font-family: ForqueWeb;
+	src: url('forque.ttf');
 }
-.company_profile_name {
-	width: 330px;
-	height: 25px;
-	font-size: 24px;
-	font-weight: bold;
-	color: white;
-	overflow: hidden;
+#header {
+	width: 300px;
+	font-family: ForqueWeb;
+	font-size: 84px;
+	color: #046DB3;
+	margin-left: auto;
+	margin-right: auto;
 }
-.company_profile_description {
-	width: 320px;
-	height: 80px;
-	overflow: hidden;
-	font-size: 14px;
-	float: right;
-}
-.company_profile_positions {
-	width: 225px;
-	height: 50px;
-	overflow: hidden;
-	font-size: 14px;
-	float: left;
-	margin-left: 20px;
-}
-.company_profile_positions_label {
-	width: 320px;
-	height: 15px;
-	color: white;
-	overflow: hidden;
-	font-size: 14px;
-	float: left;
-	margin-left: 10px;
-	font-style: italic;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-.company_queue_container {
-	width: 70px;
-	height: 50px;
-	overflow: hidden;
-	font-size: 12px;
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
-	text-align: center;
-	border: 2px solid #F28410;
-	border-radius: 10px;
-	background-color: #F28410;
-	line-height: 20px;
-}
-.company_queue_number {
-	width: 70px;
-	position: relative;
-	text-align: center;
-	font-size: 28px;
-	font-weight: bold;
-	margin-top: 2px;
-}
-.company_queue_normal_state {
-	display: block;
-	width: 70px;
-	height: 40px;
-}
-.company_queue_hover_state {
-	display: none;
-	width: 70px;
-	height: 40px;
-	font-size: 14px;
-	text-align: center;
-	font-weight: bold;
-	margin-top: 3px;
-}
+
+	#list_container {
+		width: 900px;
+		height: 100%;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.company_profile {
+		width: 330px;
+		height: 180px;
+		margin: 50px;
+		position: relative;
+		float: left;
+		background-color: #046DB3;
+		padding: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+	.company_profile_name {
+		width: 330px;
+		height: 25px;
+		font-size: 24px;
+		font-weight: bold;
+		color: white;
+		overflow: hidden;
+	}
+	.company_profile_description {
+		width: 320px;
+		height: 80px;
+		overflow: hidden;
+		font-size: 14px;
+		float: right;
+	}
+	.company_profile_positions {
+		width: 225px;
+		height: 50px;
+		overflow: hidden;
+		font-size: 14px;
+		float: left;
+		margin-left: 20px;
+	}
+	.company_profile_positions_label {
+		width: 320px;
+		height: 15px;
+		color: white;
+		overflow: hidden;
+		font-size: 14px;
+		float: left;
+		margin-left: 10px;
+		font-style: italic;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.company_queue_container {
+		width: 70px;
+		height: 50px;
+		overflow: hidden;
+		font-size: 12px;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		text-align: center;
+		border: 2px solid #F28410;
+		border-radius: 10px;
+		background-color: #F28410;
+		line-height: 20px;
+	}
+	.company_queue_number {
+		width: 70px;
+		position: relative;
+		text-align: center;
+		font-size: 28px;
+		font-weight: bold;
+		margin-top: 2px;
+	}
+	.company_queue_normal_state {
+		display: block;
+		width: 70px;
+		height: 40px;
+	}
+	.company_queue_hover_state {
+		display: none;
+		width: 70px;
+		height: 40px;
+		font-size: 14px;
+		text-align: center;
+		font-weight: bold;
+		margin-top: 3px;
+	}
+	
+/*
+ * Chat
+ */
+#list_container {
+		width: 900px;	
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#top_container {
+		top: 20px;
+		width: 900px;
+		height: 660px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#bottom_container {
+		width: 820px;
+		height: 220px;
+		background-color: #046DB3;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: 15px;
+		padding: 40px;
+	}
+	#other_video_container {
+		width: 320px;
+		height: 240px;
+		background-color: #C9D2D2;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#my_video_container {
+		width: 320px;
+		height: 240px;
+		background-color: #C9D2D2;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+	}
+	#resume_container {
+		width: 370px;
+		height: 520px;
+		background-color: #046DB3;
+		position: relative;
+		float:right;
+		right: 0px;
+		border-radius: 15px;
+		padding: 40px;
+	}
+	#top_left_container {
+		padding: 40px;
+		width: 320px;
+		height: 520px;
+		float:left;
+		left: 0px;
+		border-radius: 15px;
+		background-color: #046DB3;
+	}
+	#top_left_container_label {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px; 
+	}
+	#resume_info {
+		width: 370px;
+		height:520px;
+		background-color: #C9D2D2;
+		overflow: auto;
+	}
+	#resume_label {
+		top: 0px;
+		left: 0px;
+		width: 300px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+	}
+	#bottom_container_label {
+		width: 300px;
+		height: 16px;
+		color: #F2FEFF;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		font-weight: bold;
+		padding-left: 20px;
+		padding-top: 10px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	#instant_chat_container {
+		width: 820px;
+		height: 220px;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#instant_chat_public {
+		position: relative;
+		float: left;
+		width: 820px;
+		height: 150px;
+		background-color: #C9D2D2;
+		overflow: auto;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+	}
+	#instant_chat_entry {
+		position: relative;
+		float: left;
+		width: 480px;
+		height: 50px;
+		background-color: #C9D2D2;
+		border: 0px;
+		margin-top: 15px;
+		overflow: hidden;
+		padding-left: 10px;
+		padding-right: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+		
+	}
+	#instant_chat_button {
+		position: relative;
+		float: right;
+		width: 300px;
+		height: 50px;
+		margin-top: 15px;
+		background-color: #FFFFFF;
+		border-radius: 10px;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 50px;
+		cursor: pointer;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+
+	}
+	#instant_chat_button:hover {
+		background-color: #0087F8;
+	}
+	#next_person_button {
+		position: absolute;
+		top: 240px;
+		left: 50px;
+		border-radius: 10px;
+		background-color: white;
+		width: 120px;
+		height: 30px;
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 30px;
+		cursor: pointer;
+		z-index:99999999;
+		-moz-transition: background-color 1s;
+		-webkit-transition: background-color 1s;
+		-o-transition: background-color 1s;
+
+	}
+	#next_person_button:hover {
+		background-color: #0087F8;
+	}
