@@ -20,8 +20,9 @@ function Tables() {
 
 Tables.prototype = new process.EventEmitter();
 
-Tables.prototype.addTable = function(id) {
-  this[id] = {};
+Tables.prototype.setupTable = function(id, tableInfo) {
+  //this[id] = {};
+  this[id].table = tableInfo;
   this.emit('table added', {id: id, data: this[id] });
 }
 
@@ -65,7 +66,8 @@ io.sockets.on('connection', function (socket) {
   socket.on('comp rep', function() {
     socket.get('id', function(err, id) {
       users[id].type = 1;
-      tables.addTable(id);
+      //tables.addTable(id);
+      tables[id] = {};
       ot.createSession('localhost', {}, function(session) {
         tables[id].otSession = session["sessionId"];
         users[id].otToken = ot.generateToken({
@@ -76,6 +78,13 @@ io.sockets.on('connection', function (socket) {
         console.log('addTable called');
       })
     });
+  });
+  
+  socket.on('table setup', function(tableInfo) {
+    socket.get('id', function(err, id) {
+      // TODO: error checking
+      tables.setupTable(id, tableInfo);
+    })
   });
 
   socket.on('disconnect', function() {
