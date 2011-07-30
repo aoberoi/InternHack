@@ -172,6 +172,9 @@ JOBFAIR.sockets = (function (io) {
 		}
 		company_profile += '</div>';
 		company_profile += '<div class="company_queue_container"><div class="company_queue_normal_state">In Queue<div class="company_queue_number">0</div></div></div></div>';
+		
+		$("#list_container").append(company_profile);
+	
 	}
   });
   
