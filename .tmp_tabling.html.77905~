@@ -139,7 +139,7 @@
 		position: relative;
 		float: left;
 		width: 820px;
-		height: 220px;
+		height: 150px;
 		background-color: #C9D2D2;
 		overflow: auto;
 		font-family: Arial, Helvetica, sans-serif;
@@ -234,8 +234,8 @@
 			<div id="bottom_container_label">Instant Sharing</div>
 			<div id="instant_chat_container">
 				<div id="instant_chat_public">blah blah blah</div>
-				<!--<input type="text" id="instant_chat_entry" placeholder="enter something to share"/>
-				<div id="instant_chat_button">Press to Share</div>-->
+				<input type="text" id="instant_chat_entry" placeholder="enter something to share"/>
+				<div id="instant_chat_button">Press to Share</div>
 			</div>
 		</div>
 	</div>

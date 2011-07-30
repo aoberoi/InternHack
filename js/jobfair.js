@@ -47,8 +47,11 @@ var JOBFAIR = (function (IN) {
  	}
  	
  	function initChat() {
- 	  jf.opentok.init(type, tableId);
+ 	  jf.opentok.init(jf.me.type, jf.me.tableId);
  	  console.log('chat initialization');
+	  if (jf.me.type == jf.userTypes.JOB_SEEKER) {
+	  	//jf.sockets.candidateAtTable(jf.me.linkedInId, )
+	  }
  	}
  	
  	/*
@@ -128,6 +131,19 @@ JOBFAIR.sockets = (function (io) {
   
   socket.on('new table', function(data) {
     console.log(data);
+	// If person is a representative
+	if(JOBFAIR.me.type == 1) {
+		var company_profile = '<div class="company" id="'+data.table.companyId+'">';
+		company_profile += '<div class="company_profile_name">'+data.table.name+'</div>';
+		company_profile += '<div class="company_profile_description">'+data.table.description+'</div>';
+		company_profile += '<div class="company_profile_positions_label">Seeking:</div>';
+		company_profile += '<div class="company_profile_positions">';
+		for (x = 0; x < data.table.position.length; x++) {
+			company_profile += data.table.positions[x].title +", ";
+		}
+		company_profile += '</div>';
+		company_profile += '<div class="company_queue_container"><div class="company_queue_normal_state">In Queue<div class="company_queue_number">0</div></div></div></div>';
+	}
   });
   
   socket.on('session data', function(data) {

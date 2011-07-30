@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #C9D2D2;
+	}
+	@font-face {
+	font-family: ForqueWeb;
+	src: url('forque.ttf');
+}
+#header {
+	width: 300px;
+	font-family: ForqueWeb;
+	font-size: 84px;
+	color: #046DB3;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+	#list_container {
+		width: 900px;
+		height: 100%;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.company_profile {
+		width: 330px;
+		height: 180px;
+		margin: 50px;
+		position: relative;
+		float: left;
+		background-color: #046DB3;
+		padding: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		border-radius: 15px;
+		cursor: pointer;
+	}
+	.company_profile_name {
+		width: 330px;
+		height: 25px;
+		font-size: 24px;
+		font-weight: bold;
+		color: white;
+		overflow: hidden;
+	}
+	.company_profile_description {
+		width: 320px;
+		height: 80px;
+		overflow: hidden;
+		font-size: 14px;
+		float: right;
+	}
+	.company_profile_positions {
+		width: 225px;
+		height: 50px;
+		overflow: hidden;
+		font-size: 14px;
+		float: left;
+		margin-left: 20px;
+	}
+	.company_profile_positions_label {
+		width: 320px;
+		height: 15px;
+		color: white;
+		overflow: hidden;
+		font-size: 14px;
+		float: left;
+		margin-left: 10px;
+		font-style: italic;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.company_queue_container {
+		width: 70px;
+		height: 50px;
+		overflow: hidden;
+		font-size: 12px;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		text-align: center;
+		border: 2px solid #F28410;
+		border-radius: 10px;
+		background-color: #F28410;
+		line-height: 20px;
+	}
+	.company_queue_number {
+		width: 70px;
+		position: relative;
+		text-align: center;
+		font-size: 28px;
+		font-weight: bold;
+		margin-top: 2px;
+	}
+	.company_queue_normal_state {
+		display: block;
+		width: 70px;
+		height: 40px;
+	}
+	.company_queue_hover_state {
+		display: none;
+		width: 70px;
+		height: 40px;
+		font-size: 14px;
+		text-align: center;
+		font-weight: bold;
+		margin-top: 3px;
+	}
+</style>
+</head>
+<body>
+	<div id="header">careertok</div>
+	<div id="list_container">
+		<div class="company_profile">
+			<div class="company_profile_name">TokBox</div>
+			<div class="company_profile_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+			<div class="company_profile_positions_label">Seeking:</div>
+			<div class="company_profile_positions">Tech Support, HR Recruit, Dev Envangelist</div>
+			<div class="company_queue_container">
+				<div class="company_queue_normal_state">
+					In Queue
+					<div class="company_queue_number">12</div>
+				</div>
+				<div class="company_queue_hover_state">Talk to Rep</div>
+			</div>
+		</div>
+	</div>
+	<!--
+	<div id="container">
+		<div id="list_left_container">
+			<div class="company_profile">
+				<div class="company_profile_left">
+					<div class="company_profile_img"></div>
+					<div class="company_profile_queue">12</div>
+				</div>
+				<div class="company_profile_right">
+					<div class="company_profile_name">TokBox</div>
+				</div>
+			</div>
+		</div>
+		<div id="list_right_container"></div>
+	</div>
+	-->
+</body>
+</html>

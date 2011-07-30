@@ -12,7 +12,9 @@
 	<script src="js/jobfair.js"></script>
 </head>
 <body>
-	<div id="header">careertok</div>
+	<header>
+		<h1>Job Fair Live!</h1>
+	</header>
 	
 	<div id="shell">
   	<div id="intro_container">
