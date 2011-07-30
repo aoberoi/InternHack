@@ -95,5 +95,15 @@ io.sockets.on('connection', function (socket) {
       //console.log(users);
     });
   });
+  
+  socket.on('candidate arrived', function(candidateId, tableId) {
+  	sessionId = tables[tableId].otSession;
+	users[candidateId].otToken = ot.generateToken({
+          'connection_data': "userid_" + new Date().getTime(),
+          'role': "moderator"
+        });
+	socket.emit('session data', {session: sessionId, token: users[candidateId].otToken});
+	socket.emit('candidate info', {id : candidateId});
+  });
 });
     
