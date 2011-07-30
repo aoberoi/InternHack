@@ -45,6 +45,10 @@ var JOBFAIR = (function (IN) {
  	  // attach all event handlers
  	}
  	
+ 	function initChat() {
+ 	  
+ 	}
+ 	
  	/*
  	 * Helpers
  	 */
@@ -73,15 +77,24 @@ var JOBFAIR = (function (IN) {
 	};
 	
 	jf.onUserSelected = function() {
+	  switch(jf.me.type) {
+	    case jf.userTypes.JOB_SEEKER:
+	      jf.me.state = jf.userStates.LOBBY;
+    	  loadLayout('table_list', initTableList);
+	      break;
+	    case jf.userTypes.COMPANY_REP:
+	      jf.me.state = jf.userStates.CHATTING;
+    	  loadLayout('chat', initChat);
+	      // populate jf.me.company
+	      break;
+	  }
 	  jf.sockets.selectType(jf.me.type);
-	  jf.me.state = jf.userStates.LOBBY;
-	  loadLayout('table_list', initTableList);
 	}
      
   return jf; 
 }(IN));
 
-JOBFAIR.sockets = (function (IN, io) {
+JOBFAIR.sockets = (function (io) {
   var sckts = {};
   
   var socket = io.connect('http://internhack.opentok.com:8000');
@@ -97,15 +110,15 @@ JOBFAIR.sockets = (function (IN, io) {
   };
   
   sckts.selectType = function(userType) {
-    console.log('selecting type: '+userType);
+    //console.log('selecting type: '+userType);
     switch(userType) {
       case JOBFAIR.userTypes.JOB_SEEKER :
         socket.emit('job seeker');
-        console.log('job seeker emitted');
+        //console.log('job seeker emitted');
         break;
       case JOBFAIR.userTypes.COMPANY_REP :
         socket.emit('comp rep');
-        console.log('comp rep emitted');
+        //console.log('comp rep emitted');
         break;
     }
   }
@@ -115,7 +128,7 @@ JOBFAIR.sockets = (function (IN, io) {
   });
   
   return sckts;
-}(IN, io));
+}(io));
 
 // var JOBFAIR.opentok = (function (IN, TB) { 
 //   var ot = {};

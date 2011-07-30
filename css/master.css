@@ -46,6 +46,7 @@ body {
 		border-radius: 25px;
 		-moz-border-radius: 25px;
 		cursor: pointer;
+		display:block;
 	}
 	#seeker_button {
 		top: 50px;
