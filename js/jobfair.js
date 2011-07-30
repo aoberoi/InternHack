@@ -46,15 +46,24 @@ var JOBFAIR = (function (IN) {
  	  // attach all event handlers
 	  $(".company_profile").live('click', function() {
 	  		loadLayout('chat', initChat);
+	  		jf.me.tableId = $(this).data('id');
+	  		console.log(jf.me.tableId);
 	  });
  	}
  	
  	function initChat() {
  	  //jf.opentok.init(jf.me.type, jf.me.tableId);
+    //jf.me.state=jf.userStates.CHATTING;
  	  console.log('chat initialization');
 	  if (jf.me.type == jf.userTypes.JOB_SEEKER) {
 	  	jf.sockets.candidateAtTable(jf.me.linkedInId, jf.me.tableId);
 	  }
+	  var positionsHTML = '';
+	  for (var i=0, len=jf.me.table.positions.length; i<len; ++i) {
+	    positionsHTML += '<script type="IN/Apply" data-companyId="'+jf.me.table.positions[i].companyId+'" data-jobTitle="'+jf.me.table.positions[i].name+'" data-email="ankur@tokbox.com"></script>';
+	  }
+	  $('#positions_list').html(positionsHTML);
+	  IN.parse(document.getElementById("positions_list"));
  	}
  	
  	/*
@@ -117,11 +126,15 @@ var JOBFAIR = (function (IN) {
                             positions :   f_positions
                           };
               jf.sockets.tableSetup(tableInfo);
+              jf.me.tableId = jf.me.linkedInId;
+              JOBFAIR.me.table = tableInfo;
+              jf.me.state = jf.userStates.CHATTING;
+          	  loadLayout('chat', initChat);
 	          });
 	        });
 	      });
-	      jf.me.state = jf.userStates.CHATTING;
-    	  loadLayout('chat', initChat);
+        // jf.me.state = jf.userStates.CHATTING;
+        //        loadLayout('chat', initChat);
 	      break;
 	  }
 	  jf.sockets.selectType(jf.me.type);
@@ -163,6 +176,7 @@ JOBFAIR.sockets = (function (io) {
         //console.log('comp rep emitted');
         break;
     }
+  }
     
   sckts.tableSetup = function (tableInfo) {
       socket.emit('table setup', tableInfo);
@@ -172,32 +186,40 @@ JOBFAIR.sockets = (function (io) {
     socket.emit('candidate arrived', {candidateId: id, table: tableId});
   }
   
-  socket.on('candidate info' function(data) {
+  socket.on('candidate info', function(data) {
     JOBFAIR.presentProfile(data.id);
-  })
+  });
+  
+  // socket.on('position info', function(data) {
+  //   if (JOBFAIR.me.state == JOBFAIR.userStates.CHATTING) {
+  //     JOBFAIR.presentPositions(data.positions);
+  //   }
+  // });
   
   socket.on('new table', function(data) {
     console.log(data);
-	// If person is a representative
-	if(JOBFAIR.me.type == 0) {
-		var company_profile = '<div class="company_profile" id="'+data.data.table.companyId+'">';
-		company_profile += '<div class="company_profile_name">'+data.data.table.name+'</div>';
-		company_profile += '<div class="company_profile_description">'+data.data.table.description+'</div>';
-		company_profile += '<div class="company_profile_positions_label">Seeking:</div>';
-		company_profile += '<div class="company_profile_positions">';
-		for (x = 0; x < data.data.table.positions.length; x++) {
-			company_profile += data.data.table.positions[x].title +", ";
-		}
-		company_profile += '</div>';
-		company_profile += '<div class="company_queue_container"><div class="company_queue_normal_state">In Queue<div class="company_queue_number">0</div></div></div></div>';
+	  // If person is a representative
+	  JOBFAIR.me.table = data.data.table;
+	  JOBFAIR.me.tableId= data.id;
+	  if(JOBFAIR.me.type == 0) {
+		  var company_profile = '<div class="company_profile" id="'+data.data.table.companyId+'" data-id="'+data.id+'" >';
+		  company_profile += '<div class="company_profile_name">'+data.data.table.name+'</div>';
+		  company_profile += '<div class="company_profile_description">'+data.data.table.description+'</div>';
+		  company_profile += '<div class="company_profile_positions_label">Seeking:</div>';
+		  company_profile += '<div class="company_profile_positions">';
+		  for (x = 0; x < data.data.table.positions.length; x++) {
+			  company_profile += data.data.table.positions[x].title +", ";
+		  }
+		  company_profile += '</div>';
+		  company_profile += '<div class="company_queue_container"><div class="company_queue_normal_state">In Queue<div class="company_queue_number">0</div></div></div></div>';
 		
-		$("#table_list_container").html(company_profile);
-	}
-  });
+		  $("#table_list_container").html(company_profile);
+	  }
+	});
   
   socket.on('session data', function(data) {
   	JOBFAIR.opentok.init(data.session, data.token);
-  })
+  });
   
   return sckts;
 }(io));

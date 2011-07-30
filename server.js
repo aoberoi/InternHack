@@ -6,16 +6,6 @@ ot.setEnvironment("staging.tokbox.com");
 
 
 function Tables() {
-  // company name
-  //         id
-  //         positions
-  //            position id
-  //                     job-title
-  //                     
-  // description
-  // positions
-  // queue
-  // url
 }
 
 Tables.prototype = new process.EventEmitter();
@@ -55,6 +45,8 @@ io.sockets.on('connection', function (socket) {
       users[id].type = 0;
     })
     tables.on('table added', function(data) {
+      // var returnData = data;
+      // returnData.tableId = 
       socket.emit('new table', data);
       console.log('sending job seeker new table');
     });
@@ -66,8 +58,10 @@ io.sockets.on('connection', function (socket) {
   socket.on('comp rep', function() {
     socket.get('id', function(err, id) {
       users[id].type = 1;
-      //tables.addTable(id);
       tables[id] = {};
+      socket.join(id);
+      console.log('starting new table '+id);
+      console.log(tables[id]);
       ot.createSession('localhost', {}, function(session) {
         tables[id].otSession = session["sessionId"];
         users[id].otToken = ot.generateToken({
@@ -75,8 +69,8 @@ io.sockets.on('connection', function (socket) {
           'role': "moderator"
         });
         socket.emit('session data', {session: tables[id].otSession, token: users[id].otToken});
-        console.log('addTable called');
-      })
+        socket.emit('table info', {});
+      });
     });
   });
   
@@ -96,14 +90,16 @@ io.sockets.on('connection', function (socket) {
     });
   });
   
-  socket.on('candidate arrived', function(candidateId, tableId) {
-  	sessionId = tables[tableId].otSession;
-	users[candidateId].otToken = ot.generateToken({
-          'connection_data': "userid_" + new Date().getTime(),
-          'role': "moderator"
-        });
-	socket.emit('session data', {session: sessionId, token: users[candidateId].otToken});
-	socket.emit('candidate info', {id : candidateId});
+  socket.on('candidate arrived', function(data) {
+    console.log('candidate connecting to table '+data.table);
+  	sessionId = tables[data.table].otSession;
+	  users[data.candidateId].otToken = ot.generateToken({
+	    'connection_data': "userid_" + new Date().getTime(),
+      'role': "moderator"
+    });
+    socket.join(data.table);
+	  socket.emit('session data', {session: sessionId, token: users[data.candidateId].otToken});
+	  io.sockets.in(data.table).emit('candidate info', {id : data.candidateId});
   });
 });
     

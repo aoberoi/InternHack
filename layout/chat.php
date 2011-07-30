@@ -18,9 +18,7 @@
 		<div id="bottom_container">
 			<div id="bottom_container_label">Positions Available</div>
 			<div id="instant_chat_container">
-				<div id="instant_chat_public">blah blah blah</div>
-				<!--<input type="text" id="instant_chat_entry" placeholder="enter something to share"/>
-				<div id="instant_chat_button">Press to Share</div>-->
+				<div id="positions_list"></div>
 			</div>
 		</div>
 	</div>
