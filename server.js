@@ -1,5 +1,17 @@
+var opentok = require('opentok');
+var OPENTOK_API_KEY = '2466921';
+var OPENTOK_API_SECRET = '7a9c44bd9bfe8b8b67f6c446b9e96b392489e5b1';
+var ot = new opentok.OpenTokSDK(OPENTOK_API_KEY,OPENTOK_API_SECRET);
+ot.setEnvironment("staging.tokbox.com");
+
+
 function Tables() {
-  // company
+  // company name
+  //         id
+  //         positions
+  //            position id
+  //                     job-title
+  //                     
   // description
   // positions
   // queue
@@ -8,9 +20,9 @@ function Tables() {
 
 Tables.prototype = new process.EventEmitter();
 
-Tables.prototype.addTable = function(id, details) {
-  this[id] = details;
-  this.emit('table added', {id: id, details: details});
+Tables.prototype.addTable = function(id) {
+  this[id] = {};
+  this.emit('table added', {id: id, data: this[id] });
 }
 
 Tables.prototype.removeTable = function(id) {
@@ -29,9 +41,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('login', function (data) {
     users[data.id] = {
       firstName : data.firstName,
-      lastName : data.lastName,
-      headline : data.headline,
-      pictureUrl : data.pictureUrl
+      lastName : data.lastName
     };
     socket.set('id', data.id);
     console.log(users);
@@ -55,11 +65,16 @@ io.sockets.on('connection', function (socket) {
   socket.on('comp rep', function() {
     socket.get('id', function(err, id) {
       users[id].type = 1;
-    })
-    console.log('comp rep arrived: '+data);
-    socket.get('id', function(err, id) {
       tables.addTable(id);
-      console.log('addTable called');
+      ot.createSession('localhost', {}, function(session) {
+        tables[id].otSession = session["sessionId"];
+        users[id].otToken = ot.generateToken({
+          'connection_data': "userid_" + new Date().getTime(),
+          'role': "moderator"
+        });
+        socket.emit('session data', {session: tables[id].otSession, token: users[id].otToken});
+        console.log('addTable called');
+      })
     });
   });
 

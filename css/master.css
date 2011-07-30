@@ -91,7 +91,7 @@ body {
 	margin-right: auto;
 }
 
-	#list_container {
+	#chat_container {
 		width: 900px;
 		height: 100%;
 		position: relative;
@@ -185,7 +185,7 @@ body {
 /*
  * Chat
  */
-#list_container {
+#chat_container {
 		width: 900px;	
 		position: relative;
 		margin-left: auto;
