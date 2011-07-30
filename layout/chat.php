@@ -1,6 +1,6 @@
 <?php
 ?>
-<div id="list_container">
+<div id="chat_container">
 		<div id="top_container">
 			<div id="top_left_container">
 				<div id="top_left_container_label">Video Feed</div>

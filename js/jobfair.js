@@ -46,7 +46,7 @@ var JOBFAIR = (function (IN) {
  	}
  	
  	function initChat() {
- 	  
+ 	  console.log('chat initialization');
  	}
  	
  	/*
@@ -69,7 +69,7 @@ var JOBFAIR = (function (IN) {
   };
 
 	jf.onLinkedInAuth = function() {
-	  IN.API.Profile("me").result(function(profiles) {
+	  IN.API.Profile("me").fields('id', 'firstName', 'lastName').result(function(profiles) {
 	    jf.sockets.login(profiles.values[0]);
 	    jf.me.linkedInId = profiles.values[0].id;
 	  })
@@ -83,6 +83,9 @@ var JOBFAIR = (function (IN) {
     	  loadLayout('table_list', initTableList);
 	      break;
 	    case jf.userTypes.COMPANY_REP:
+	      IN.API.Profile("me").fields('positions:(company:(id,name))').result(function(values) {
+	        console.log(values);
+	      })
 	      jf.me.state = jf.userStates.CHATTING;
     	  loadLayout('chat', initChat);
 	      // populate jf.me.company
@@ -103,9 +106,7 @@ JOBFAIR.sockets = (function (io) {
     socket.emit('login', {
       id : member.id,
       firstName : member.firstName,
-      lastName : member.lastName,
-      headline : member.headline,
-      pictureUrl : member.pictureUrl
+      lastName : member.lastName
     });
   };
   
