@@ -153,9 +153,13 @@ JOBFAIR.sockets = (function (io) {
         break;
     }
     
-    sckts.tableSetup = function (tableInfo) {
+  sckts.tableSetup = function (tableInfo) {
       socket.emit('table setup', tableInfo);
     }
+  }
+  
+  sckts.candidateAtTable = function() {
+    
   }
   
   socket.on('new table', function(data) {
