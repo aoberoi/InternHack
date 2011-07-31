@@ -112,13 +112,15 @@ var JOBFAIR = (function (IN) {
 	            // filter by this poster id and company id
 	            var f_positions = [];
 	            //var i=0, len=myArray.length; i<len; ++i
-	            for (var i=0, len=results3.jobs.values.length; i<len; ++i) {
-	              if (results3.jobs.values[i].jobPoster.id == jf.me.linkedInId) {
-	                f_positions.push({ id : results3.jobs.values[i].id, title : results3.jobs.values[i].position.title, companyId : results1.values[0].positions.values[0].company.id });
-	              } else {
-	                console.log('job poster: '+results3.jobs.values[i].jobPoster.id + ' my id: '+ jf.me.linkedInId + ' job: ' + results3.jobs.values[i]);
-	              }
-	            }
+	            if (results3.jobs.values) {
+  	            for (var i=0, len=results3.jobs.values.length; i<len; ++i) {
+  	              if (results3.jobs.values[i].jobPoster.id == jf.me.linkedInId) {
+  	                f_positions.push({ id : results3.jobs.values[i].id, title : results3.jobs.values[i].position.title, companyId : results1.values[0].positions.values[0].company.id });
+  	              } else {
+  	                console.log('job poster: '+results3.jobs.values[i].jobPoster.id + ' my id: '+ jf.me.linkedInId + ' job: ' + results3.jobs.values[i]);
+  	              }
+  	            }
+              }
               tableInfo = {
                             name :        results1.values[0].positions.values[0].company.name,
                             companyId :   results1.values[0].positions.values[0].company.id,
